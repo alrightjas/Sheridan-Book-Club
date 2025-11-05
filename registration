@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register!&#x2728;</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="registrationscript.js" defer></script>
+</head>
+
+<body>
+    <h1>Sheridan Book Club</h1>
+<main>
+    <div class="cup">
+        <form id="form" action="login.html">
+            <h1>register here!</h1>
+            <div class ="form-control">
+                <label for="email">email</label>
+                <input type="email" id="email" name="email"/>
+                <div class="error"></div>
+            </div>
+            <div class ="form-control">
+                <label for="firstname">first name</label>
+                <input type="text" id="firstname" name="firstname"/>
+                <div class="error"></div>
+            </div>
+            <div class ="form-control">
+                <label for="lastname">last name</label>
+                <input type="text" id="lastname" name="lastname"/>
+                <div class="error"></div>
+            </div>
+            <div class ="form-control">
+                <label for="pword">password</label>
+                <input type="password" id="pword" name="pword"/>
+                <div class="error"></div>
+            </div>
+            <div class ="form-control">
+                <label for="pword2">confirm password</label>
+                <input type="password" id="pword2" name="pword2"/>
+                <div class="error"></div>
+            </div>
+            <div class ="form-control">
+                <input type="checkbox" id="terms" value="agree"/> i agree to the <a href="#" id="show-terms">terms and conditions</a>
+                <div class="error"></div>
+            </div>
+            <div id="terms-model" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #ccc; padding:20px; z-index:1000;">
+            <p>jas and ishal are the greatest of all time</p>
+            <button id="close-terms">close</button>
+</div>
+<button type="submit">register!</button>
+</form>
+</main>
+    <script src="registration-validation.js"></script>
+
+</body>
+</html>
