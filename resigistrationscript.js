@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function vaidateForm() {
         let valid = true;
 
-        if (emaail.value.trim() === '') {
+        if (email.value.trim() === '') {
             showError(email, 'Email is required');
             valid = false;
             } else if (!/\S+@\S+\.\S+/.test(email.value)) {
