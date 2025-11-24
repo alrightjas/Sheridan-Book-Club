@@ -31,23 +31,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $conn->prepare("INSERT INTO users (email, username, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)");
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    
     $stmt->bind_param("sssss", $email, $username, $firstname, $lastname, $hashed_password);
 
     if ($stmt->execute()) {
         echo "Registration successful!";
+        $stmt->close();
+        header("Location: login.html");
+        exit();
     } else {
+        http_response_code(500);
         echo "Error: " . $stmt->error;
     }
 
-    $stmt->close();
-
-    if ($stmt->execute()) {
-    header("Location: login.html");
-    exit();
-} else {
-    http_response_code(500);
-    echo "Error: " . $stmt->error;
-}
     $stmt->close();
 
 }
