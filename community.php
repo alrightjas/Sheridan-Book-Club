@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +55,7 @@
                 <span class="star" data-value="5">&#9733;</span>
             </div>
 
-            
+            <?php if (isset($_SESSION['username'])): ?>
             <div class="review-form">
                 <textarea id="review-text" maxlength="650" placeholder="Write your review here..."></textarea>
                 <div class="char-count">
@@ -61,9 +64,10 @@
                 <button id="submit-review">Submit Review</button>
             </div>
 
-            
-            <p id="loginmsg" class="loginmsg hidden">
-                Please <a href="login.html">log in</a> to submit a review.
+            <?php else: ?>
+            <p>Please <a href="login.php">log in</a> to submit a review</p>
+            <?php endif; ?>
+
             </p>
         </section>
     </main>
