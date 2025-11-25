@@ -12,23 +12,30 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <title>My Reading Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
     <script src="personalscript.js" defer></script>
 </head>
 
 <body>
 
+    <div class="decor-left"></div>
+    <div class="decor-right"></div>
+
 <div class="personalContainer" data-username="<?= $username ?>">
 
-    <h1>📚 Welcome, <?= htmlspecialchars($username) ?>!</h1>
+<header>
+    <h1>Welcome</h1>
+    <h2><?= htmlspecialchars($username) ?>!</h2>
 
     <nav>
-                <a href="index.php">Home</a>
-                <a href="community.php">Community</a>
-                <div id="authBtnContainer">
-                </div>
-            </nav>
-
+        <a href="index.php">Home</a>
+        <a href="community.php">Community</a>
+        <div id="authBtnContainer"></div>
+    </nav>
+</header>
+<main>
+    <div class = "content-wrapper">
     <section>
         <h2>Currently Reading</h2>
 
@@ -67,6 +74,6 @@ $username = $_SESSION['username'];
     </section>
 
 </div>
-
+</main>
 </body>
 </html>
