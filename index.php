@@ -1,3 +1,8 @@
+<?php
+session_start();
+$loggedIn = isset($_SESSION['username']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,14 +10,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>sheridan book club!&#x2728;</title>
         <link rel="stylesheet" href="styles.css">
-        <script src="index.js" defer></script>
+        <script> const loggedIn = <?php echo $loggedIn ? 'true' : 'false'; ?>; </script>
+
     </head>
     <body>
         <header>
-            <h1><a href="index.html">Sheridan<br>Book Club</a></h1>
+            <h1><a href="index.php">Sheridan<br>Book Club</a></h1>
             <nav>
                 <a href="community.php">Community</a>
-                <a href="personal.html" id="personalLink">Personal</a>
+                <a href="personal.php" id="personalLink">Personal</a>
                 <div id="authBtnContainer">
                 </div>
             </nav> 
@@ -35,4 +41,15 @@
         <footer>
             <p>&copy; 2025 Group 8. All rights reserved.</p>
         </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const communityLink = document.getElementById('nav a href="community.php"');
+
+                communityLink.addEventListener('click', (event) => {
+                    if (!loggedIn) {
+                        e.preventDefault();
+                        window.location.href = 'login.php';
+                    }
+                });
+        </body>
         
