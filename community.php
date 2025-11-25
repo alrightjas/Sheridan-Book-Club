@@ -12,10 +12,10 @@ session_start();
 </head>
 <body>
     <header>
-        <h1><a href="index.html">Sheridan<br>Community</a></h1>
+        <h1><a>Sheridan<br>Community</a></h1>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="personal.html">Personal</a>
+            <a href="index.php">Home</a>
+            <a href="personal.php">Personal</a>
         </nav>
     </header>
 
