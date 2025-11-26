@@ -38,8 +38,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="loginscript.js" defer></script>
 </head>
 <body>
-    <h1>Login Here!</h1>
+
     <main>
+    <div class= "content-wrapper">
+    <h1>Login Here!</h1>
     <form id="form" action="login.php" method="post">
     
         <div class="form-control">
@@ -60,6 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Login">
      </form>
         <script src="login-validation.js"></script>
+</div>
 </main>
 </body>
 </html>

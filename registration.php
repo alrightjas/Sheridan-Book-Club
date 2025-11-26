@@ -1,51 +1,52 @@
 <?php
 include 'config.php';
+header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+
+    $email = $_POST['email'] ?? '';
+    $username = $_POST['username'] ?? '';
+    $firstname = $_POST['firstname'] ?? '';
+    $lastname = $_POST['lastname'] ?? '';
     $password = $_POST["pword"] ?? "";
     $password2 = $_POST["pword2"] ?? "";
 
+   
+    if (empty($email) || empty($username) || empty($firstname) || empty($lastname) || empty($password)) {
+        echo json_encode(["success" => false, "message" => "All fields are required."]);
+        exit;
+    }
+
+   
     if ($password !== $password2) {
-        echo "Passwords do not match.";
+        echo json_encode(["success" => false, "message" => "Passwords do not match."]);
         exit;
     }
 
-    if (empty($username) || empty($email) || empty($firstname) || empty($lastname) || empty($password)) {
-        echo "All fields are required.";
-        exit;
-    }
-
-    $check = $conn->prepare("SELECT * FROM users WHERE username = ?");
+ 
+    $check = $conn->prepare("SELECT id FROM users WHERE username = ?");
     $check->bind_param("s", $username);
     $check->execute();
-    $result = $check->get_result();
+    $res = $check->get_result();
 
-    if ($result->num_rows > 0) {
-        echo "Username already exists. Please choose another.";
+    if ($res->num_rows > 0) {
+        echo json_encode(["success" => false, "message" => "Username already exists."]);
         exit;
     }
 
+
     $stmt = $conn->prepare("INSERT INTO users (email, username, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)");
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-    
-    $stmt->bind_param("sssss", $email, $username, $firstname, $lastname, $hashed_password);
+    $hashed = password_hash($password, PASSWORD_BCRYPT);
+
+    $stmt->bind_param("sssss", $email, $username, $firstname, $lastname, $hashed);
 
     if ($stmt->execute()) {
-        echo "Registration successful!";
-        $stmt->close();
-        header("Location: login.html");
-        exit();
+        echo json_encode(["success" => true]);
     } else {
-        http_response_code(500);
-        echo "Error: " . $stmt->error;
+        echo json_encode(["success" => false, "message" => "Database error: " . $stmt->error]);
     }
 
     $stmt->close();
-
 }
 $conn->close();
 ?>

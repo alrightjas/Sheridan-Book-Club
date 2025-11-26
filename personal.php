@@ -28,11 +28,11 @@ $username = $_SESSION['username'];
     <h1>Welcome</h1>
     <h2><?= htmlspecialchars($username) ?>!</h2>
 
-    <nav>
-        <a href="index.php">Home</a>
-        <a href="community.php">Community</a>
-        <div id="authBtnContainer"></div>
-    </nav>
+            <nav>
+            <a href="community.php">Community</a>
+            <a href="index.php">Home</a>
+            <a href="personal.php" id="personalLink">Personal</a>
+        </nav>
 </header>
 <main>
     <div class = "content-wrapper">

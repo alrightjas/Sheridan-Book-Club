@@ -6,12 +6,16 @@
     <title>register!&#x2728;</title>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="registrationscript.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Sheridan Book Club</h1>
+    <header>
+        <h1>Sheridan Book Club</h1>
+        <h2>Registration</h2>
+    </header>
 <main>
-    <div class="cup">
+    <div class="content-wrapper">
         <form id="form" action="registration.php" method="POST">
             <h1>register here!</h1>
             <div class ="form-control">
@@ -23,6 +27,7 @@
                 <label for="username">username</label>
                 <input type="text" id="username" name="username"/>
                 <div class="error"></div>
+            </div>
             <div class ="form-control">
                 <label for="firstname">first name</label>
                 <input type="text" id="firstname" name="firstname"/>
@@ -47,14 +52,12 @@
                 <input type="checkbox" id="terms" value="agree"/> i agree to the <a href="#" id="show-terms">terms and conditions</a>
                 <div class="error"></div>
             </div>
-            <div id="terms-model" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #ccc; padding:20px; z-index:1000;">
-            <p>jas and ishal are the greatest of all time</p>
+            <div id="terms-modal" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #ccc; padding:20px; z-index:1000;">
+            <p>jas and ishak are the greatest of all time</p>
             <button id="close-terms">close</button>
 </div>
 <button type="submit">register!</button>
 </form>
 </main>
-    <script src="registration-validation.js"></script>
-
 </body>
 </html>

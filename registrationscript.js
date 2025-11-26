@@ -11,109 +11,106 @@ document.addEventListener('DOMContentLoaded', () => {
     const termsModal = document.getElementById('terms-modal');
     const closeTerms = document.getElementById('close-terms');
 
-    showTerms.addEventListener('click', () => {
+    showTerms.addEventListener('click', (e) => {
         e.preventDefault();
         termsModal.style.display = 'block';
     });
 
-    closeTerms.addEventListener('click', () => {
+    closeTerms.addEventListener('click', (e) => {
         e.preventDefault();
         termsModal.style.display = 'none';
     });
 
-    function clearErrors(input) {
+    function showError(input, message) {
         const formControl = input.parentElement;
         const errorDiv = formControl.querySelector(".error");
         errorDiv.textContent = message;
-        input.classList.remove('error-input');
+        input.classList.add("error-input");
     }
 
-    async function checkUsername(usernameValue) {
-        const response = await fetch('check_username.php?username=' + encodeURIComponent(usernameValue));
-        const data = await response.json();
-        return data.exists;
-    }
-    async function validateForm() {
-        let valid = true;
-
+    function clearErrors(input) {
+        const formControl = input.parentElement;
+        const errorDiv = formControl.querySelector(".error");
+        errorDiv.textContent = "";
+        input.classList.remove("error-input");
     }
 
-    function vaidateForm() {
+    function validateForm() {
         let valid = true;
 
         if (email.value.trim() === '') {
-            showError(email, 'Email is required');
+            showError(email, "Email is required");
             valid = false;
-            } else if (!/\S+@\S+\.\S+/.test(email.value)) {
-            showError(email, 'Email is not valid');
-            valid = false;
-            } else {
+        } else {
             clearErrors(email);
         }
 
         if (username.value.trim() === '') {
-            showError(username, 'Username is required');
+            showError(username, "Username is required");
             valid = false;
-            } else {
-            clearError(username);
-            }
-
+        } else {
+            clearErrors(username);
+        }
 
         if (firstname.value.trim() === '') {
-            showError(firstname, 'First name required');
+            showError(firstname, "First name is required");
             valid = false;
-            } else {
+        } else {
             clearErrors(firstname);
         }
 
         if (lastname.value.trim() === '') {
-            showError(lastname, 'Last name required');
+            showError(lastname, "Last name is required");
             valid = false;
-            } else {
+        } else {
             clearErrors(lastname);
         }
 
-        if (pword.value.trim() === '') {
-            showError(pword, 'Password is required');
+        if (pword.value.trim() === "") {
+            showError(pword, "Password is required");
             valid = false;
-            } else if (pword2.value !== pword.value) {
-            showError(pword2, 'Passwords do not match');
+        } else if (pword.value !== pword2.value) {
+            showError(pword2, "Passwords do not match");
             valid = false;
-            } else {
-            clearErrors(pword2);
+        } else {
             clearErrors(pword);
+            clearErrors(pword2);
         }
 
         if (!terms.checked) {
-            showError(terms, 'You must agree to the terms');
+            showError(terms, "You must agree to the terms");
             valid = false;
-            } else {
+        } else {
             clearErrors(terms);
         }
 
         return valid;
     }
 
-    form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!vaidateForm()) return;
+
+        if (!validateForm()) return;
+
         const formData = new FormData(form);
-        
+
         try {
             const response = await fetch('registration.php', {
                 method: 'POST',
-                body: formData 
+                body: formData
             });
-            const result = await response.text();
 
-            if (response.ok) {
-                alert('Registration successful!');
-                window.location.href = 'login.html';
+            const result = await response.json();
+
+            if (result.success) {
+                window.location.href = "login.php";
             } else {
-                alert('Registration failed: ' + result);
+                alert(result.message || "Registration failed.");
             }
+
         } catch (error) {
-            alert('An error occurred: ' + error.message);
+            alert("Error: " + error.message);
         }
     });
 });
+

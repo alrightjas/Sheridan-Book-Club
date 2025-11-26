@@ -1,5 +1,6 @@
 <?php
 session_start();
+$loggedIn = isset($_SESSION['username']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +21,17 @@ session_start();
     <h2>Community</h2>
 
     <nav>
-        <a href="index.php">Home</a>
-        <a href="personal.php">Personal</a>
-    </nav>
+            <a href="community.php">Community</a>
+            <a href="index.php">Home</a>
+            <a href="personal.php" id="personalLink">Personal</a>
+
+            <?php if ($loggedIn): ?>
+                <a href="logout.php" class="logout-btn">Logout</a>
+            <?php else: ?>
+                <a href="login.php" class="login-btn">Login</a>
+            <?php endif; ?>
+        </nav>
+
 </header>
 
 <main class="section">
