@@ -29,9 +29,16 @@ $loggedIn = isset($_SESSION['username']);
 
         <nav>
             <a href="community.php">Community</a>
+            <a href="index.php">Home</a>
             <a href="personal.php" id="personalLink">Personal</a>
-            </div>
+
+            <?php if ($loggedIn): ?>
+                <a href="logout.php" class="logout-btn">Logout</a>
+            <?php else: ?>
+                <a href="login.php" class="login-btn">Login</a>
+            <?php endif; ?>
         </nav>
+        
     </header>
 
     <main class="section">
