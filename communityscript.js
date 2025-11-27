@@ -1,14 +1,19 @@
 let selectedRating = 0;
 
 const stars = document.querySelectorAll('.star');
+
 if (stars.length > 0) {
     stars.forEach(star => {
         star.addEventListener('click', () => {
-            selectedRating = star.dataset.value;
+            selectedRating = parseInt(star.dataset.value);
 
-            stars.forEach(s => {
-                s.classList.toggle('selected', s.dataset.value <= selectedRating);
-            });
+            // Clear all highlighted stars
+            stars.forEach(s => s.classList.remove('selected'));
+
+            // Highlight stars up to the clicked one
+            for (let i = 0; i < selectedRating; i++) {
+                stars[i].classList.add('selected');
+            }
         });
     });
 }

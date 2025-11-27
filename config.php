@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = ""; // Replace with your password if any
-$dbname = "bookclub-users"; // Replace with your database name
+$servername = "local";
+$username = ""; //replace with cpanel username
+$password = ""; // Replace with your cpanel password if any
+$dbname = "bookclub_users"; // Replace with your database name
 
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -234,3 +234,19 @@ button:hover, input[type="submit"]:hover {
     margin-bottom: 6px;
 }
 
+.star {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #7a72c3;
+    transition: 0.2s;
+}
+
+.star:hover {
+    color: #524b8f;
+}
+
+.star.selected {
+    color: #463d96;
+}
+
+
