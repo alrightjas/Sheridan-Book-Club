@@ -37,6 +37,7 @@ $loggedIn = isset($_SESSION['username']);
 <main class="section">
     <div class = "content-wrapper">
     <section class="book-of-week">
+        <h1>Book of the Week!</h1>
         <div class="book-frame">
             <img src="img/bookoftheweek.jpg" alt="Book Cover" width="200" height="300">
         </div>
